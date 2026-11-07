@@ -8,6 +8,8 @@ public class PlayerController : BaseController
     private InputAction _moveInput;
     private InputAction _dashInput;
     private InputAction _jumpInput;
+    private InputAction _lightAttackInput;
+    private InputAction _heavyAttackInput;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Awake()
@@ -16,6 +18,8 @@ public class PlayerController : BaseController
         _moveInput = InputSystem.actions.FindAction("Move");
         _dashInput = InputSystem.actions.FindAction("Sprint");
         _jumpInput = InputSystem.actions.FindAction("Jump");
+        _lightAttackInput = InputSystem.actions.FindAction("Light Attack");
+        _heavyAttackInput = InputSystem.actions.FindAction("Heavy Attack");
     }
 
     // Update is called once per frame
@@ -42,6 +46,11 @@ public class PlayerController : BaseController
         _jumpInput.Enable();
         _jumpInput.performed += Jump;
         _jumpInput.canceled -= Jump;
+
+        _lightAttackInput.Enable();
+        _heavyAttackInput.Enable();
+        _lightAttackInput.performed += OnAttack;
+        _heavyAttackInput.performed += OnAttack;
     }
 
     private void OnDisable()
@@ -49,6 +58,8 @@ public class PlayerController : BaseController
         _moveInput.Disable();
         _dashInput.Disable();
         _jumpInput.Disable();
+        _lightAttackInput.Disable();
+        _heavyAttackInput.Disable();
     }
 
     private void Jump(InputAction.CallbackContext context)
@@ -74,12 +85,29 @@ public class PlayerController : BaseController
 
         if (currentState.name == "PlayerNeutralAir" && actionCoroutine == null && !usedAirDash)
         {
-            actionCoroutine = StartCoroutine(currentState.actionList[0].ActionRoutine(this));
+            actionCoroutine = StartCoroutine(currentState.dashAction.ActionRoutine(this));
         }
     }
 
     private void DashCancelled(InputAction.CallbackContext context)
     {
         isDashing = false;
+    }
+
+    private void OnAttack(InputAction.CallbackContext context)
+    {
+        if (!isAttacking && actionCoroutine == null)
+        {
+            if (context.action.name == "Light Attack")
+            {
+                isAttacking = true;
+                currentState.transition.decision.ActionCheck(this, AttackType.Light);
+            }
+            else if (context.action.name == "Heavy Attack")
+            {
+                isAttacking = true;
+                currentState.transition.decision.ActionCheck(this, AttackType.Heavy);
+            }
+        }
     }
 }

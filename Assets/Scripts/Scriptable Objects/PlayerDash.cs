@@ -10,7 +10,10 @@ public class PlayerDash : BaseState
 
     public override void UpdatePhysics(BaseController controller)
     {
-        controller.rb.linearVelocityX = controller.followDirection.x * controller.moveSpeed * 1.5f;
+        if (controller.actionCoroutine == null)
+        {
+            controller.rb.linearVelocityX = controller.followDirection.x * controller.moveSpeed * 1.5f;
+        }
     }
 
     public override void UpdateLogic(BaseController controller)

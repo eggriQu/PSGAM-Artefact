@@ -17,6 +17,13 @@ public class BaseController : MonoBehaviour
     public bool isAirborne;
     public bool isFalling;
     public bool isGrounded;
+    public bool isAttacking;
+
+    public enum AttackType
+    {
+        Light,
+        Heavy
+    }
 
     public BaseState currentState;
     public Coroutine actionCoroutine;
@@ -78,11 +85,14 @@ public class BaseController : MonoBehaviour
 
     public void ChangeUsingTransition()
     {
-        int stateIndex = (int)(currentState?.transition.decision.Check(this));
-
-        if (currentState != currentState.transition.potentialStates[stateIndex])
+        if (actionCoroutine == null)
         {
-            ChangeState(currentState.transition.potentialStates[stateIndex]);
+            int stateIndex = (int)(currentState?.transition.decision.Check(this));
+
+            if (currentState != currentState.transition.potentialStates[stateIndex])
+            {
+                ChangeState(currentState.transition.potentialStates[stateIndex]);
+            }
         }
     }
 }

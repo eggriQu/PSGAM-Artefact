@@ -11,7 +11,10 @@ public class PlayerIdle : BaseState
 
     public override void UpdatePhysics(BaseController controller)
     {
-        controller.rb.linearVelocityX = 0;
+        if (controller.actionCoroutine == null)
+        {
+            controller.rb.linearVelocityX = 0;
+        }
     }
 
     public override void UpdateLogic(BaseController controller)

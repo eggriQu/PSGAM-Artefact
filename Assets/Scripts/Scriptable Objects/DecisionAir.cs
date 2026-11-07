@@ -3,6 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Decision/Player/Neutral Air")]
 public class DecisionAir : IDecision
 {
+    public override void ActionCheck(BaseController fsm, BaseController.AttackType attackType)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override int Check(BaseController controller)
     {
         if (!controller.isAirborne)

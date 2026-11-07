@@ -19,5 +19,5 @@ MonoBehaviour:
     - {fileID: 11400000, guid: eb7a06082beafcb40aee23744b2bce8d, type: 2}
     - {fileID: 11400000, guid: 4c80145dd08607841a20954caafc5b63, type: 2}
     - {fileID: 11400000}
-  actionList:
-  - {fileID: 11400000, guid: 14d078fb1de1c6e4eb409853619c90e1, type: 2}
+  dashAction: {fileID: 11400000, guid: 14d078fb1de1c6e4eb409853619c90e1, type: 2}
+  actionList: []

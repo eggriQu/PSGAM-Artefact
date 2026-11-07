@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.Rendering;
+using static UnityEngine.Rendering.DebugUI;
 
 public abstract class IAction : ScriptableObject
 {
@@ -12,6 +14,7 @@ public abstract class IAction : ScriptableObject
 public abstract class BaseState : ScriptableObject
 {
     public Transition transition;
+    public IAction dashAction;
     public List<IAction> actionList;
 
     public abstract void Entry(BaseController controller);

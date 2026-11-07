@@ -10,7 +10,10 @@ public class PlayerWalk : BaseState
 
     public override void UpdatePhysics(BaseController controller)
     {
-        controller.rb.linearVelocityX = controller.followDirection.x * controller.moveSpeed;
+        if (controller.actionCoroutine == null)
+        {
+            controller.rb.linearVelocityX = controller.followDirection.x * controller.moveSpeed;
+        }
     }
 
     public override void UpdateLogic(BaseController controller)
