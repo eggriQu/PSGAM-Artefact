@@ -64,10 +64,6 @@ public class PlayerController : BaseController
 
     private void Jump(InputAction.CallbackContext context)
     {
-        //groundCast.collider.excludeLayers = LayerMask.GetMask("Ground");
-        //rb.excludeLayers = LayerMask.GetMask("Ground");
-        //GetComponent<Collider2D>().excludeLayers = LayerMask.GetMask("Ground");
-
         if (isGrounded)
         {
             isAirborne = true;
@@ -77,6 +73,11 @@ public class PlayerController : BaseController
     private void Moving(InputAction.CallbackContext context)
     {
         followDirection = context.ReadValue<Vector2>();
+
+        if (followDirection.x != 0)
+        {
+            facingDirection = followDirection;
+        }
     }
 
     private void Dashing(InputAction.CallbackContext context)

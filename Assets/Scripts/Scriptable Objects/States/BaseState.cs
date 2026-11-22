@@ -8,6 +8,9 @@ using static UnityEngine.Rendering.DebugUI;
 
 public abstract class IAction : ScriptableObject
 {
+    [SerializeField] protected float startup;
+    [SerializeField] protected float active;
+    [SerializeField] protected float recovery;
     public abstract IEnumerator ActionRoutine(BaseController fsm);
 }
 

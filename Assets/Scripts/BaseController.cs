@@ -6,6 +6,7 @@ public class BaseController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Vector2 followDirection;
+    public Vector2 facingDirection;
     public float moveSpeed;
     public float jumpForce;
     public float dashForce;
@@ -25,13 +26,16 @@ public class BaseController : MonoBehaviour
         Heavy
     }
 
+    public BoxCollider2D attackCollider;
+    public BoxCollider2D hitCollider;
+
     public BaseState currentState;
     public Coroutine actionCoroutine;
 
     private RaycastHit2D groundCast;
-    [SerializeField] public LayerMask groundMask;
+    public LayerMask groundMask;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] public LayerMask ignoreLayer;
+    public LayerMask ignoreLayer;
 
     public virtual void Awake()
     {
@@ -94,5 +98,16 @@ public class BaseController : MonoBehaviour
                 ChangeState(currentState.transition.potentialStates[stateIndex]);
             }
         }
+    }
+
+    public Vector2 SetColliderXY(float xValue, float yValue)
+    {
+        return new Vector2(xValue, yValue);
+    }
+
+    public void SetColliderValues(float xOffset, float yOffset, float xSize, float ySize)
+    {
+        attackCollider.offset = new Vector2(xOffset, yOffset);
+        attackCollider.size = new Vector2(xSize, ySize);
     }
 }
