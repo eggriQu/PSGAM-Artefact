@@ -3,9 +3,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "State/Player/Walk")]
 public class PlayerWalk : BaseState
 {
+    public override void Awake()
+    {
+        base.Awake();
+    }
+
     public override void Entry(BaseController controller)
     {
-        Debug.Log("Player walking");
+        controller.SetAnimation("Walking");
     }
 
     public override void UpdatePhysics(BaseController controller)
@@ -13,6 +18,10 @@ public class PlayerWalk : BaseState
         if (controller.actionCoroutine == null)
         {
             controller.rb.linearVelocityX = controller.followDirection.x * controller.moveSpeed;
+        }
+        else
+        {
+            currentAction.UpdateActionPhysics(controller);
         }
     }
 

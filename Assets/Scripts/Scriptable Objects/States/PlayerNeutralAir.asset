@@ -20,4 +20,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4c80145dd08607841a20954caafc5b63, type: 2}
     - {fileID: 11400000}
   dashAction: {fileID: 11400000, guid: 14d078fb1de1c6e4eb409853619c90e1, type: 2}
-  actionList: []
+  currentAction: {fileID: 11400000, guid: 76a99cfd7c8a4804b9eee96626f841ac, type: 2}
+  actionList:
+  - {fileID: 11400000, guid: d5caa86bc0c53d841bba8b758a7fa45b, type: 2}
+  - {fileID: 11400000, guid: 76a99cfd7c8a4804b9eee96626f841ac, type: 2}

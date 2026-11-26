@@ -28,6 +28,8 @@ public class BaseController : MonoBehaviour
 
     public BoxCollider2D attackCollider;
     public BoxCollider2D hitCollider;
+    [SerializeField] private Animator anim;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     public BaseState currentState;
     public Coroutine actionCoroutine;
@@ -56,9 +58,23 @@ public class BaseController : MonoBehaviour
         }
 
         isGrounded = GroundCheck();
+
+        if (facingDirection.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (facingDirection.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
-    public virtual void LateUpdate()
+    //public virtual void LateUpdate()
+    //{
+    //    currentState.UpdatePhysics(this);
+    //}
+
+    public virtual void FixedUpdate()
     {
         currentState.UpdatePhysics(this);
     }
@@ -109,5 +125,10 @@ public class BaseController : MonoBehaviour
     {
         attackCollider.offset = new Vector2(xOffset, yOffset);
         attackCollider.size = new Vector2(xSize, ySize);
+    }
+
+    public void SetAnimation(string animationName)
+    {
+        anim.Play(animationName);
     }
 }

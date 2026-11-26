@@ -9,10 +9,16 @@ public class ActionDash : IAction
         controller.rb.gravityScale = 0;
         controller.rb.linearVelocityY = 0;
         controller.usedAirDash = true;
-        
-        controller.rb.AddForce(controller.followDirection * controller.dashForce, ForceMode2D.Impulse);
+
+        controller.SetAnimation("AirDash");
+        controller.rb.AddForceX(controller.facingDirection.x * controller.dashForce, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.3f);
 
         controller.actionCoroutine = null;
+    }
+
+    public override void UpdateActionPhysics(BaseController fsm)
+    {
+        
     }
 }

@@ -1,0 +1,26 @@
+using System.Collections;
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "Actions/Player/Heavy Attacks/Air")]
+public class ActionHeavyAir : IAction
+{
+    public override IEnumerator ActionRoutine(BaseController controller)
+    {
+        SetActionTime();
+        yield return new WaitForSeconds(startup);
+        controller.SetColliderValues(1 * controller.facingDirection.x, 0, 1, 1);
+        controller.rb.AddForce(controller.facingDirection * 6f, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(active);
+        controller.SetColliderValues(0, 0, 0.1f, 0.1f);
+
+        yield return new WaitForSeconds(recovery);
+        controller.actionCoroutine = null;
+        controller.isAttacking = false;
+    }
+
+    public override void UpdateActionPhysics(BaseController controller)
+    {
+
+    }
+}

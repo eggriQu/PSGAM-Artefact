@@ -3,9 +3,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "State/Player/Dash")]
 public class PlayerDash : BaseState
 {
+    public override void Awake()
+    {
+        base.Awake();
+    }
+
     public override void Entry(BaseController controller)
     {
-        Debug.Log("Player dashing");
+        controller.SetAnimation("Dashing");
     }
 
     public override void UpdatePhysics(BaseController controller)
@@ -13,6 +18,10 @@ public class PlayerDash : BaseState
         if (controller.actionCoroutine == null)
         {
             controller.rb.linearVelocityX = controller.followDirection.x * controller.moveSpeed * 1.5f;
+        }
+        else
+        {
+            currentAction.UpdateActionPhysics(controller);
         }
     }
 

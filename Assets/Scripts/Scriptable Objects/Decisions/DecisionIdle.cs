@@ -39,10 +39,12 @@ public class DecisionIdle : IDecision
         {
             if (attackType == BaseController.AttackType.Light)
             {
+                fsm.currentState.currentAction = fsm.currentState.actionList[0];
                 fsm.actionCoroutine = fsm.StartCoroutine(fsm.currentState.actionList[0].ActionRoutine(fsm));
             }
             else if (attackType == BaseController.AttackType.Heavy)
             {
+                fsm.currentState.currentAction = fsm.currentState.actionList[1];
                 fsm.actionCoroutine = fsm.StartCoroutine(fsm.currentState.actionList[1].ActionRoutine(fsm));
             }
         }

@@ -3,6 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "State/Player/Neutral Air")]
 public class PlayerAir : BaseState
 {
+    public override void Awake()
+    {
+        base.Awake();
+    }
+
     public override void Entry(BaseController controller)
     {
         Debug.Log("Player Jump");

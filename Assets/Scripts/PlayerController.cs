@@ -28,9 +28,14 @@ public class PlayerController : BaseController
         base.Update();
     }
 
-    public override void LateUpdate()
+    //public override void LateUpdate()
+    //{
+    //    base.LateUpdate();
+    //}
+
+    public override void FixedUpdate()
     {
-        base.LateUpdate();
+        base.FixedUpdate();
     }
 
     private void OnEnable()

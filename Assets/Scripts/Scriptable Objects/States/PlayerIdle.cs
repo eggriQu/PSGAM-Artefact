@@ -3,9 +3,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "State/Player/Idle")]
 public class PlayerIdle : BaseState
 {
+    public override void Awake()
+    {
+        base.Awake();
+    }
+
     public override void Entry(BaseController controller)
     {
-        Debug.Log("Player Idle");
+        controller.SetAnimation("Idle");
         controller.rb.gravityScale = controller.groundedGravity;
     }
 

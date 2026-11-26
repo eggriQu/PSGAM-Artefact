@@ -3,11 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Decision/Player/Walk")]
 public class DecisionWalk : IDecision
 {
-    public override void ActionCheck(BaseController fsm, BaseController.AttackType attackType)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public override int Check(BaseController controller)
     {
         if (controller.followDirection.x == 0)
@@ -23,6 +18,25 @@ public class DecisionWalk : IDecision
             else
             {
                 return 2;
+            }
+        }
+    }
+
+    public override void ActionCheck(BaseController controller, BaseController.AttackType attackType)
+    {
+        BaseController fsm = controller;
+
+        if (fsm.actionCoroutine == null && fsm.isAttacking)
+        {
+            if (attackType == BaseController.AttackType.Light)
+            {
+                fsm.currentState.currentAction = fsm.currentState.actionList[0];
+                fsm.actionCoroutine = fsm.StartCoroutine(fsm.currentState.actionList[0].ActionRoutine(fsm));
+            }
+            else if (attackType == BaseController.AttackType.Heavy)
+            {
+                fsm.currentState.currentAction = fsm.currentState.actionList[1];
+                fsm.actionCoroutine = fsm.StartCoroutine(fsm.currentState.actionList[1].ActionRoutine(fsm));
             }
         }
     }
