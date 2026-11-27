@@ -15,6 +15,7 @@ public class ActionDash : IAction
         yield return new WaitForSeconds(0.3f);
 
         controller.actionCoroutine = null;
+        controller.currentState.Entry(controller);
     }
 
     public override void UpdateActionPhysics(BaseController fsm)

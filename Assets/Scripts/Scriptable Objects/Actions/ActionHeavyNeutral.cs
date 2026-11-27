@@ -7,8 +7,9 @@ public class ActionHeavyNeutral : IAction
     public override IEnumerator ActionRoutine(BaseController controller)
     {
         SetActionTime();
+        controller.SetAnimation("Neutral_Heavy");
         yield return new WaitForSeconds(startup);
-        controller.SetColliderValues(1 * controller.facingDirection.x, 0, 1, 1);
+        controller.SetColliderValues(hitboxOffsetX * controller.facingDirection.x, hitboxOffsetY, hitboxSizeX, hitboxSizeY);
         controller.rb.AddForceX(controller.facingDirection.x * 3f, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(active);
@@ -17,6 +18,7 @@ public class ActionHeavyNeutral : IAction
         yield return new WaitForSeconds(recovery);
         controller.actionCoroutine = null;
         controller.isAttacking = false;
+        controller.currentState.Entry(controller);
     }
 
     public override void UpdateActionPhysics(BaseController controller)

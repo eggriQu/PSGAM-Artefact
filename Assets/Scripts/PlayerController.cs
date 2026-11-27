@@ -1,5 +1,6 @@
 using System.Threading;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 
@@ -20,6 +21,8 @@ public class PlayerController : BaseController
         _jumpInput = InputSystem.actions.FindAction("Jump");
         _lightAttackInput = InputSystem.actions.FindAction("Light Attack");
         _heavyAttackInput = InputSystem.actions.FindAction("Heavy Attack");
+
+        facingDirection.x = 1;
     }
 
     // Update is called once per frame
@@ -81,8 +84,10 @@ public class PlayerController : BaseController
 
         if (followDirection.x != 0)
         {
-            facingDirection = followDirection;
+            facingDirection.x = followDirection.x;
         }
+
+        facingDirection.y = followDirection.y;
     }
 
     private void Dashing(InputAction.CallbackContext context)

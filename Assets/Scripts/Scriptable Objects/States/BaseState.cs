@@ -15,6 +15,12 @@ public abstract class IAction : ScriptableObject
     protected float startup;
     protected float active;
     protected float recovery;
+
+    [SerializeField] protected float hitboxOffsetX;
+    [SerializeField] protected float hitboxOffsetY;
+    [SerializeField] protected float hitboxSizeX;
+    [SerializeField] protected float hitboxSizeY;
+
     public abstract IEnumerator ActionRoutine(BaseController fsm);
     public abstract void UpdateActionPhysics(BaseController fsm);
     public void SetActionTime()

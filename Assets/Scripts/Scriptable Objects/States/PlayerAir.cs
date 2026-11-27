@@ -10,7 +10,7 @@ public class PlayerAir : BaseState
 
     public override void Entry(BaseController controller)
     {
-        Debug.Log("Player Jump");
+        controller.SetAnimation("Jumping");
 
         if (controller.isDashing)
         {

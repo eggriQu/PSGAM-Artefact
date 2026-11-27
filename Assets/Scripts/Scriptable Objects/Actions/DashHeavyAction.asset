@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf38da8f3990764e8320894e00200fe, type: 3}
   m_Name: DashHeavyAction
   m_EditorClassIdentifier: Assembly-CSharp::ActionHeavyDash
-  startupFrames: 11
-  activeFrames: 6
-  recoveryFrames: 16
+  startupFrames: 15
+  activeFrames: 7
+  recoveryFrames: 12
+  hitboxOffsetX: 0
+  hitboxOffsetY: -0.1
+  hitboxSizeX: 3.7
+  hitboxSizeY: 0.3

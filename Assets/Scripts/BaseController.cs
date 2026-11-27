@@ -88,7 +88,7 @@ public class BaseController : MonoBehaviour
 
     public bool GroundCheck()
     {
-        groundCast = Physics2D.BoxCast(transform.position, Vector2.one, 0, -transform.up, 1, groundLayer);
+        groundCast = Physics2D.BoxCast(transform.position, Vector2.one * 0.5f, 0, -transform.up, 0.5f, groundLayer);
 
         if (groundCast)
         {
@@ -101,6 +101,11 @@ public class BaseController : MonoBehaviour
             isAirborne = true;
             return false;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position + (-transform.up * 0.5f), Vector2.one * 0.5f);
     }
 
     public void ChangeUsingTransition()

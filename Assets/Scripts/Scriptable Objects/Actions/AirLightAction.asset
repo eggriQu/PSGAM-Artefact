@@ -15,3 +15,7 @@ MonoBehaviour:
   startupFrames: 4
   activeFrames: 3
   recoveryFrames: 9
+  hitboxOffsetX: 0.7
+  hitboxOffsetY: -0.3
+  hitboxSizeX: 1.3
+  hitboxSizeY: 0.5

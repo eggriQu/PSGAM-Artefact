@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15700e71d0c812d4fbcb636caae4789c, type: 3}
   m_Name: AirDashAction
   m_EditorClassIdentifier: Assembly-CSharp::ActionDash
+  startupFrames: 0
+  activeFrames: 0
+  recoveryFrames: 0
+  hitboxOffsetX: 0
+  hitboxOffsetY: 0
+  hitboxSizeX: 0.1
+  hitboxSizeY: 0.1
