@@ -19,6 +19,9 @@ public class BaseController : MonoBehaviour
     public bool isFalling;
     public bool isGrounded;
     public bool isAttacking;
+    public bool beenHit;
+    public BaseController currentOpponent;
+    public AttackType currentAttack;
 
     public enum AttackType
     {
@@ -27,7 +30,7 @@ public class BaseController : MonoBehaviour
     }
 
     public BoxCollider2D attackCollider;
-    public BoxCollider2D hitCollider;
+    public CapsuleCollider2D hitCollider;
     [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -135,5 +138,18 @@ public class BaseController : MonoBehaviour
     public void SetAnimation(string animationName)
     {
         anim.Play(animationName);
+    }
+
+    public virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            currentOpponent = collision.GetComponentInParent<BaseController>();
+
+            if (currentOpponent != this && currentOpponent.isAttacking)
+            {
+                beenHit = true;
+            }
+        }
     }
 }

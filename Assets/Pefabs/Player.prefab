@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1491270239496768514}
   - component: {fileID: 2154636868986909255}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,8 +89,8 @@ GameObject:
   - component: {fileID: 8057957745606387903}
   - component: {fileID: 5383479729237476275}
   - component: {fileID: 2581340949594746136}
-  - component: {fileID: 3287933307987521840}
   - component: {fileID: 287868098386538044}
+  - component: {fileID: 3287933307987521840}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -150,7 +150,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.05}
-  m_Size: {x: 1.07, y: 0.81}
+  m_Size: {x: 0.9, y: 0.81}
   m_Direction: 1
 --- !u!50 &2581340949594746136
 Rigidbody2D:
@@ -179,6 +179,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &287868098386538044
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5686979211761726282}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f887f0fcb8085af408ce65aadc3ef12c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3287933307987521840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,8 +227,10 @@ MonoBehaviour:
   isFalling: 0
   isGrounded: 0
   isAttacking: 0
+  beenHit: 0
+  currentOpponent: {fileID: 0}
   attackCollider: {fileID: 2154636868986909255}
-  hitCollider: {fileID: 0}
+  hitCollider: {fileID: 5383479729237476275}
   anim: {fileID: 287868098386538044}
   spriteRenderer: {fileID: 5535923602340639882}
   currentState: {fileID: 11400000, guid: 4acdecf981909eb428a3dfcb1dabf5cc, type: 2}
@@ -219,28 +243,6 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 2147483648
---- !u!95 &287868098386538044
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5686979211761726282}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f887f0fcb8085af408ce65aadc3ef12c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6227002867406570454
 GameObject:
   m_ObjectHideFlags: 0

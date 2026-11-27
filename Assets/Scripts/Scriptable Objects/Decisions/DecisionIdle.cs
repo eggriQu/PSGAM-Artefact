@@ -7,27 +7,34 @@ public class DecisionIdle : IDecision
 {
     public override int Check(BaseController controller)
     {
-        if (!controller.isAirborne)
+        if (!controller.beenHit)
         {
-            if (controller.followDirection.x == 0)
+            if (!controller.isAirborne)
             {
-                return 0;
-            }
-            else
-            {
-                if (!controller.isDashing)
+                if (controller.followDirection.x == 0)
                 {
-                    return 1;
+                    return 0;
                 }
                 else
                 {
-                    return 2;
+                    if (!controller.isDashing)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 2;
+                    }
                 }
+            }
+            else
+            {
+                return 3;
             }
         }
         else
         {
-            return 3;
+            return 4;
         }
     }
 

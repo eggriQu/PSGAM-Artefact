@@ -107,18 +107,25 @@ public class PlayerController : BaseController
 
     private void OnAttack(InputAction.CallbackContext context)
     {
-        if (!isAttacking && actionCoroutine == null)
+        if (!isAttacking && actionCoroutine == null && !beenHit)
         {
             if (context.action.name == "Light Attack")
             {
                 isAttacking = true;
                 currentState.transition.decision.ActionCheck(this, AttackType.Light);
+                currentAttack = AttackType.Light;
             }
             else if (context.action.name == "Heavy Attack")
             {
                 isAttacking = true;
                 currentState.transition.decision.ActionCheck(this, AttackType.Heavy);
+                currentAttack = AttackType.Heavy;
             }
         }
+    }
+
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
     }
 }
